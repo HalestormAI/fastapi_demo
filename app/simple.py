@@ -3,9 +3,9 @@ from fastapi import FastAPI
 from fastapi import UploadFile
 import uvicorn
 
-from resnet import ResNetClassifier
-from models.item import ItemResponse, generate_random_items
-from models.classification import ClassificationResponse
+from .resnet import ResNetClassifier
+from .models.item import ItemResponse, generate_random_items
+from .models.classification import ClassificationResponse
 
 
 app = FastAPI()

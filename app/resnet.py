@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from tempfile import SpooledTemporaryFile
 from typing import Callable, Dict, Optional
 
@@ -8,6 +9,7 @@ from torchvision.transforms import ToTensor
 
 from PIL import Image
 
+ROOT_PATH = Path(__file__).parent
 
 class ResNetClassifier:
     def __init__(self):
@@ -25,7 +27,7 @@ class ResNetClassifier:
         self.preprocessor = weights.transforms()
 
     def _load_classes(self):
-        classes = json.load(open("imagenet_classes.json"))
+        classes = json.load(open(ROOT_PATH / "imagenet_classes.json"))
         return {int(k): v[1] for k, v in classes.items()}
 
     def _preprocess(self, image_file: SpooledTemporaryFile) -> torch.Tensor:
